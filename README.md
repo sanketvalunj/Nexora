@@ -1,2 +1,2 @@
 # Nexora
-A pune ieee student branch hackathon project
+A pict ieee student branch hackathon project
