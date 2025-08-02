@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinguaQuest by Team Nexora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Poppins:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+
+        <div id="welcome-screen" class="screen active">
+            <h1 class="app-title">LinguaQuest</h1>
+            <p class="tagline">Your adventure in language begins!</p>
+            
+            <div class="learner-count-highlight">
+                <p>👩‍🎓 <span id="learner-count">0</span>+ learners currently on their quest!</p>
+            </div>
+
+            <div class="avatar-selection">
+                <h3>Choose Your Avatar</h3>
+                <div class="avatars">
+                    <img src="avatars/boy.png" alt="Avatar 1" class="avatar" data-avatar="1">
+                    <img src="avatars/gorilla.png" alt="Avatar 2" class="avatar" data-avatar="2">
+                    <img src="avatars/woman.png" alt="Avatar 3" class="avatar" data-avatar="3">
+                    <img src="avatars/leonardo.png" alt="Avatar 4" class="avatar" data-avatar="4">
+                </div>
+            </div>
+
+            <div class="nickname-input">
+                <label for="nickname">Enter Your Pookie Name</label>
+                <input type="text" id="nickname" placeholder="e.g., Captain Pookie">
+            </div>
+
+            <button id="begin-btn" class="btn btn-primary">Let's Begin</button>
+        </div>
+
+        <div id="language-screen" class="screen">
+            <h2>Choose a Language</h2>
+            <div class="language-cards">
+                <div class="card" data-lang="spanish">
+                    <img src="https://flagcdn.com/w320/es.png" alt="Spanish Flag">
+                    <h3>Spanish</h3>
+                </div>
+                <div class="card" data-lang="french">
+                    <img src="https://flagcdn.com/w320/fr.png" alt="French Flag">
+                    <h3>French</h3>
+                </div>
+                <div class="card" data-lang="german">
+                    <img src="https://flagcdn.com/w320/de.png" alt="German Flag">
+                    <h3>German</h3>
+                </div>
+                <div class="card" data-lang="japanese">
+                    <img src="https://flagcdn.com/w320/jp.png" alt="Japanese Flag">
+                    <h3>Japanese</h3>
+                </div>
+            </div>
+            <button class="nav-btn" id="show-profile-btn"><i class="fas fa-user"></i> Profile</button>
+        </div>
+
+        <div id="difficulty-screen" class="screen">
+            <h2>How much of the language do you know?</h2>
+            <div class="difficulty-buttons">
+                <button class="btn btn-secondary" data-difficulty="easy">Easy (Beginner)</button>
+                <button class="btn btn-secondary" data-difficulty="medium">Medium (Intermediate)</button>
+                <button class="btn btn-secondary" data-difficulty="hard">Hard (Advanced)</button>
+            </div>
+        </div>
+
+        <div id="exercise-screen" class="screen">
+            <div class="game-hud">
+                <div id="hearts-container"></div>
+                <div class="xp-bar-container">
+                    <div id="xp-bar"></div>
+                </div>
+                <span id="xp-text">0 XP</span>
+            </div>
+            <div id="exercise-content">
+                </div>
+            <div id="feedback-popup"></div>
+        </div>
+        
+        <div id="result-screen" class="screen">
+            <div id="confetti-container"></div>
+            <h2 id="result-title">Session Complete!</h2>
+            <div class="result-summary">
+                <p>XP Gained: <span id="result-xp">0</span></p>
+                <p>Hearts Left: <span id="result-hearts"></span></p>
+                <p>Stars: <span id="result-stars"></span></p>
+            </div>
+            <p id="level-up-message"></p>
+            <div class="result-buttons">
+                <button id="retry-btn" class="btn btn-secondary">Retry Level</button>
+                <button id="next-level-btn" class="btn btn-primary">Next Level</button>
+                <button id="main-menu-btn" class="btn btn-secondary">Main Menu</button>
+            </div>
+        </div>
+
+        <div id="profile-screen" class="screen">
+            <h2>Your Profile</h2>
+            <div class="profile-card">
+                <img id="profile-avatar" src="https://api.dicebear.com/8.x/bottts/svg?seed=Casper" alt="Your Avatar">
+                <h3 id="profile-nickname">Player</h3>
+                <p>Total XP: <span id="profile-xp">0</span></p>
+                <p>Current Level: <span id="profile-level">1</span></p>
+            </div>
+            <h4>Update Avatar</h4>
+             <div class="avatars">
+                <img src="https://api.dicebear.com/8.x/bottts/svg?seed=Casper" alt="Avatar 1" class="avatar" data-avatar="1">
+                <img src="https://api.dicebear.com/8.x/bottts/svg?seed=Rocky" alt="Avatar 2" class="avatar" data-avatar="2">
+                <img src="https://api.dicebear.com/8.x/bottts/svg?seed=Misty" alt="Avatar 3" class="avatar" data-avatar="3">
+                <img src="https://api.dicebear.com/8.x/bottts/svg?seed=Coco" alt="Avatar 4" class="avatar" data-avatar="4">
+            </div>
+            <button id="back-to-menu-btn" class="btn btn-secondary">Back to Menu</button>
+        </div>
+    </div>
+    
+    <footer id="support-footer">
+        <div class="footer-content">
+            <h4>LinguaQuest Support</h4>
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> support@nexora.dev</p>
+                <p><i class="fas fa-phone"></i> +1 (234) 567-8900</p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Innovation Drive, Tech City</p>
+            </div>
+            <div class="footer-socials">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p class="visitor-count">Total Visitors: <span id="visitor-counter">0</span></p>
+            <p class="credits">Created with ❤️ by Team Nexora</p>
+        </div>
+    </footer>
+    
+    <audio id="correct-sound" src="https://actions.google.com/sounds/v1/positive/success.ogg"></audio>
+    <audio id="incorrect-sound" src="https://actions.google.com/sounds/v1/negative/failure.ogg"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
