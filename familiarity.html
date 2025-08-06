@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Language Familiarity</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <!-- AOS Animation Library -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="familiarity.css"/>
+</head>
+<body>
+  <!-- Back Button -->
+  <a href="language_selection.html" class="back-button">
+    <i class="fas fa-arrow-left"></i> Back
+  </a>
+
+  <!-- Container -->
+  <div class="container">
+    <header data-aos="fade-down">
+      <h1>How familiar are you with this language?</h1>
+      <p class="subheading">Choose your level and unlock a tailored learning journey just for you!</p>
+    </header>
+
+    <!-- Motivation Section -->
+    <section class="motivation" data-aos="fade-up" data-aos-delay="200">
+      <p class="highlight"><i class="fas fa-lightbulb"></i> Learning a new language boosts memory, career options, and connects you globally!</p>
+    </section>
+
+    <!-- Levels Section -->
+    <section class="levels-section">
+      <div class="levels">
+        <div class="level-card" data-level="beginner" data-aos="zoom-in" data-aos-delay="100">
+          <i class="fas fa-book-open icon"></i>
+          <h2>Beginner</h2>
+          <p>You're just starting to explore.</p>
+        </div>
+
+        <div class="level-card" data-level="intermediate" data-aos="zoom-in" data-aos-delay="200">
+          <i class="fas fa-chart-line icon"></i>
+          <h2>Intermediate</h2>
+          <p>You know the basics and want to improve.</p>
+        </div>
+
+        <div class="level-card" data-level="advanced" data-aos="zoom-in" data-aos-delay="300">
+          <i class="fas fa-rocket icon"></i>
+          <h2>Advanced</h2>
+          <p>You're confident and looking for mastery.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" data-aos="fade-up" data-aos-delay="400">
+      <h3>Why choose your level?</h3>
+      <ul>
+        <li><i class="fas fa-check-circle"></i> Personalized lessons that match your pace</li>
+        <li><i class="fas fa-check-circle"></i> Focused vocabulary and grammar for your level</li>
+        <li><i class="fas fa-check-circle"></i> Measurable progress tracking</li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" data-aos="fade-up">
+    <p>&copy; Made by <b>TEAM NEXORA</b>. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="familiarity.js"></script>
+
+  <!-- Initialize AOS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      AOS.init({
+        duration: 1000,
+        once: true
+      });
+    });
+  </script>
+</body>
+</html>

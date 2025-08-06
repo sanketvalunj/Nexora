@@ -1,0 +1,252 @@
+/* Reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+body {
+  font-family: 'Poppins', sans-serif;
+background: linear-gradient(135deg, #f0f4ff, #d3e0ff);
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* Back Button */
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  text-decoration: none;
+  /* color: #6c63ff; */
+  color: black;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.back-button i {
+  margin-right: 8px;
+}
+
+.back-button:hover {
+  color: #ff6b6b;
+}
+
+/* Container */
+.container {
+  text-align: center;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.container h1 {
+  font-size: 2.6rem;
+  margin-bottom: 50px;
+  font-weight: 700;
+  background: linear-gradient(to right,black);
+   /* #6c63ff  , #00c9a7*/
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Level Cards Container */
+.levels {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* Individual Card Styles */
+.level-card {
+  background: #ffffff;
+  border: 2px solid #f0f0f0;
+  border-radius: 20px;
+  padding: 30px;
+  width: 260px;
+  cursor: pointer;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  color: #333;
+}
+
+.level-card:hover {
+  transform: translateY(-10px);
+  border-color: #6c63ff;
+  box-shadow: 0 10px 25px rgba(108, 99, 255, 0.2);
+}
+
+.level-card.selected {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 15px rgba(255, 107, 107, 0.3);
+}
+
+/* Icons */
+.level-card .icon {
+  font-size: 3.2rem;
+  margin-bottom: 15px;
+  color: #00c9a7;
+  transition: color 0.3s ease;
+}
+
+.level-card:hover .icon {
+  color: #ff6b6b;
+}
+
+/* Card Text */
+.level-card h2 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  /* color: #6c63ff; */
+  color: black;
+}
+
+.level-card p {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .levels {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .level-card {
+    width: 90%;
+  }
+}
+/* Subheading (fills space below title) */
+.subheading {
+  font-size: 1.1rem;
+  color: #555;
+  max-width: 600px;
+  margin: 10px auto 40px;
+}
+
+/* Section around levels for better spacing */
+.levels-section {
+  padding-bottom: 40px;
+}
+
+/* Footer to balance bottom of page */
+.footer {
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 0.9rem;
+  color: #888;
+  background: #f8f8f8;
+  border-top: 1px solid #eee;
+  margin-top: auto;
+  width: 100%;
+}
+/* Subheading enhancement */
+.subheading {
+  font-size: 1.2rem;
+  color: #444;
+  max-width: 650px;
+  margin: 10px auto 30px;
+}
+
+/* Highlight/motivation */
+.motivation {
+  background: #f1f7ff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+
+.motivation .highlight {
+  color: #2c3e50;
+  font-size: 1.1rem;
+  text-align: center;           /* ✅ Center align */
+  display: flex;
+  justify-content: center;      /* ✅ Center flex items */
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+
+
+/* Benefits Section */
+.benefits {
+  background: #f9f9f9;
+  padding: 30px;
+  margin-top: 50px;
+  margin-bottom: 40px; /* ✅ Adds space before footer */
+  border-radius: 15px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+
+
+.benefits h3 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  /* color: #6c63ff; */
+  color: black;
+}
+
+.benefits ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.benefits li {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.benefits li i {
+  color: #00c9a7;
+  margin-right: 10px;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Keep container above footer */
+.container {
+  flex: 1;
+}
+
+/* Footer fix */
+.footer {
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 0.9rem;
+  color: #888;
+  background: #f8f8f8;
+  border-top: 1px solid #eee;
+  width: 100%;
+  margin-top: auto; /* ✅ Pushes footer to bottom */
+}
