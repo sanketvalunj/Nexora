@@ -47,6 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Store in localStorage (or use fetch to send to server)
       localStorage.setItem('languageFamiliarity', selectedLevel);
 
+
+
       // Optional: Redirect or show confirmation
       setTimeout(() => {
         alert(`You selected: ${selectedLevel.charAt(0).toUpperCase() + selectedLevel.slice(1)} level`);
@@ -55,3 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+function goToBeginner() {
+  window.location.href = "contents.html";
+}
+function goToAdvanced(){
+    
+    window.location.href = "contents2.html";
+}
+function goToIntermediate(){
+    
+    window.location.href = "contents3.html";
+}
