@@ -69,7 +69,8 @@ background: linear-gradient(135deg, #f0f4ff, #d3e0ff);
 
 /* Individual Card Styles */
 .level-card {
-  background: #ffffff;
+  background: linear-gradient(135deg, #e0e6ff 0%, #dcd4f0 100%); /* ⬅️ Soft purple gradient */
+  color: #333;
   border: 2px solid #f0f0f0;
   border-radius: 20px;
   padding: 30px;
@@ -78,8 +79,8 @@ background: linear-gradient(135deg, #f0f4ff, #d3e0ff);
   transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
   text-align: center;
-  color: #333;
 }
+
 
 .level-card:hover {
   transform: translateY(-10px);
@@ -185,7 +186,7 @@ background: linear-gradient(135deg, #f0f4ff, #d3e0ff);
 
 /* Benefits Section */
 .benefits {
-  background: #f9f9f9;
+  background: linear-gradient(135deg, #e0e6ff 0%, #dcd4f0 100%); /* ⬅️ Soft purple gradient */
   padding: 30px;
   margin-top: 50px;
   margin-bottom: 40px; /* ✅ Adds space before footer */
