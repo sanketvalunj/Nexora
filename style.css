@@ -1,8 +1,7 @@
-
 /* General */
 body {
   font-family: 'Poppins', sans-serif;
-   background: linear-gradient(135deg, #f0f4ff, #d3e0ff);
+  background: linear-gradient(135deg, #f0f4ff, #d3e0ff);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -13,7 +12,7 @@ a {
   color: black;
 }
 
-/* Navbar */              
+/* Navbar */
 .navbar {
   background-color:#E6F0FF;
   padding: 20px;
@@ -44,9 +43,17 @@ a {
 
 /* Hero Section */
 .hero {
-  background-color: #F0F8FF;
-  padding: 60px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 80px 20px;
   text-align: center;
+}
+
+.hero-title {
+  font-size: 3.5rem; /* ⬆️ Increased Font Size */
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .get-started {
@@ -177,5 +184,3 @@ a {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   z-index: 1000;
 }
-
-
