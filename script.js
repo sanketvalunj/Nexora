@@ -1,70 +1,89 @@
-// Show About modal
-document.querySelector("a[href='#about']").addEventListener("click", function(e) {
-  e.preventDefault();
-  document.getElementById("about-modal").style.display = "block";
-});
+document.addEventListener("DOMContentLoaded", function () {
+  // --- Smooth Scrolling ---
+  const navLinks = document.querySelectorAll(".scroll-link");
 
-// Show Contact modal
-document.getElementById("contact-link").addEventListener("click", function(e) {
-  e.preventDefault();
-  document.getElementById("contact-modal").style.display = "block";
-});
-
-// Close modal function (reusable)
-function closeModal(id) {
-  document.getElementById(id).style.display = "none";
-}
-function selectLanguage(lang) {
-  alert("You selected: " + lang);
-  // You can redirect or store language using localStorage here
-}
-document.querySelectorAll(".level-card").forEach(card => {
-  card.addEventListener("click", () => {
-    const level = card.getAttribute("data-level");
-    alert(`You selected: ${level}`);
-    // Redirect to a new page if needed
-    // window.location.href = `lessons.html?level=${level}`;
-  });
-});
-function goToFamiliarity() {
-  window.location.href = "familiarity.html";
-}
-// familiarity.js
-document.addEventListener('DOMContentLoaded', () => {
-  const levelCards = document.querySelectorAll('.level-card');
-
-  levelCards.forEach(card => {
-    card.addEventListener('click', () => {
-      // Remove existing selections
-      levelCards.forEach(c => c.classList.remove('selected'));
-
-      // Add selected class
-      card.classList.add('selected');
-
-      // Get the selected level
-      const selectedLevel = card.getAttribute('data-level');
-
-      // Store in localStorage (or use fetch to send to server)
-      localStorage.setItem('languageFamiliarity', selectedLevel);
-
-
-
-      // Optional: Redirect or show confirmation
-      setTimeout(() => {
-        alert(`You selected: ${selectedLevel.charAt(0).toUpperCase() + selectedLevel.slice(1)} level`);
-        // location.href = 'next-page.html'; // Uncomment to redirect
-      }, 300);
+  navLinks.forEach(link => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute("href");
+      const targetElement = document.querySelector(targetId);
+      
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     });
   });
+
+  // --- Theme Toggling Logic ---
+  const themeToggle = document.getElementById("theme-toggle");
+  const htmlRoot = document.getElementById("html-root");
+
+  const switchTheme = (isDark) => {
+    if (isDark) {
+      htmlRoot.setAttribute("data-theme", "dark");
+      localStorage.setItem("linguaquest_theme", "dark");
+    } else {
+      htmlRoot.setAttribute("data-theme", "light");
+      localStorage.setItem("linguaquest_theme", "light");
+    }
+  };
+
+  themeToggle.addEventListener("change", function() {
+    switchTheme(this.checked);
+  });
+
+  const savedTheme = localStorage.getItem("linguaquest_theme");
+  if (savedTheme === "dark") {
+    themeToggle.checked = true;
+    switchTheme(true);
+  } else {
+    themeToggle.checked = false;
+    switchTheme(false);
+  }
+
+  // --- Scroll Animation for Cards & Sections ---
+  const animatedElements = document.querySelectorAll(".language-card, .about-section, .contact-info");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  animatedElements.forEach((el) => {
+    observer.observe(el);
+  });
+
+  // --- ADDED: Typing Effect for Hero Description ---
+  const heroDescription = document.getElementById('hero-description');
+  const descriptionText = heroDescription.textContent;
+  heroDescription.textContent = ''; // Clear the original text to start the effect
+
+  function typeWriter(element, text, speed) {
+    let i = 0;
+    element.classList.add('blinking-cursor');
+    
+    function type() {
+      if (i < text.length) {
+        element.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, speed);
+      } else {
+        // Typing is complete, so remove the cursor
+        element.classList.remove('blinking-cursor');
+      }
+    }
+    type();
+  }
+
+  // Start the typing effect after the title has had time to animate
+  setTimeout(() => {
+    typeWriter(heroDescription, descriptionText, 50);
+  }, 800); // Delay in milliseconds
+
 });
-function goToBeginner() {
-  window.location.href = "contents.html";
-}
-function goToAdvanced(){
-    
-    window.location.href = "contents2.html";
-}
-function goToIntermediate(){
-    
-    window.location.href = "contents3.html";
-}
