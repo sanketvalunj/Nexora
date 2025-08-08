@@ -13,6 +13,9 @@
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="language_selection.css" />
+
+  <!-- AOS Animation Library -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 </head>
 <body>
   <nav class="navbar">
@@ -25,41 +28,60 @@
   </nav>
 
   <section class="language-selection">
-    <h2>     What Do You Want To Learn...</h2>
+    <h2>What Do You Want To Learn...</h2>
     <div class="language-grid">
-      <div class="language-card" onclick="goToFamiliarity()">
+      <!-- Row 1 -->
+      <div class="language-card" data-status="coming-soon" data-aos="fade-up" data-aos-delay="100">
         <img src="https://flagcdn.com/w320/gb.png" alt="English" />
         <h4>English</h4>
       </div>
-      <div class="language-card" onclick="goToFamiliarity()">
+      <div class="language-card" data-status="coming-soon" data-aos="fade-up" data-aos-delay="200">
         <img src="https://flagcdn.com/w320/in.png" alt="Hindi" />
         <h4>Hindi</h4>
       </div>
-      <div class="language-card" onclick="goToFamiliarity()">
+      <div class="language-card" data-status="coming-soon" data-aos="fade-up" data-aos-delay="300">
         <img src="https://flagcdn.com/w320/es.png" alt="Spanish" />
         <h4>Spanish</h4>
       </div>
-      <div class="language-card" onclick="goToFamiliarity()">
-        <img src="https://flagcdn.com/w320/fr.png" alt="French" />
-        <h4>French</h4>
-      </div>
-      <div class="language-card" onclick="goToFamiliarity()">
-        <img src="https://flagcdn.com/w320/jp.png" alt="Japanese" />
-        <h4>Japanese</h4>
-      </div>
-      <div class="language-card" onclick="goToFamiliarity()">
-        <img src="https://flagcdn.com/w320/in.png" alt="Marathi" />
-        <h4>Marathi</h4>
-      </div>
-      <div class="language-card" onclick="goToFamiliarity()">
+
+      <!-- Row 2 - Center Cards -->
+      <div class="language-card" onclick="goToFamiliarity()" data-aos="fade-up" data-aos-delay="400">
         <img src="https://flagcdn.com/w320/de.png" alt="German" />
         <h4>German</h4>
       </div>
-    </div>
+      <div class="language-card" data-status="coming-soon" data-aos="fade-up" data-aos-delay="500">
+        <img src="https://flagcdn.com/w320/in.png" alt="Marathi" />
+        <h4>Marathi</h4>
+      </div>
+      <div class="language-card" data-status="coming-soon" data-aos="fade-up" data-aos-delay="600">
+        <img src="https://flagcdn.com/w320/fr.png" alt="French" />
+        <h4>French</h4>
+      </div>
 
-    
+      <!-- Row 3 -->
+      <div class="language-card"  data-status="coming-soon" data-aos="fade-up" data-aos-delay="700">
+        <img src="https://flagcdn.com/w320/jp.png" alt="Japanese" />
+        <h4>Japanese</h4>
+      </div>
+    </div>
   </section>
 
+  
+   
+  
+  
+  
+
+  <!-- JavaScript -->
   <script src="script.js"></script>
+
+  <!-- AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
 </body>
 </html>
