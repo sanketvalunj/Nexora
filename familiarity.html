@@ -5,57 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Language Familiarity</title>
 
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
 
-  <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-  <!-- AOS Animation Library -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
-  <!-- CSS -->
   <link rel="stylesheet" href="familiarity.css"/>
 </head>
 <body>
-  <!-- Back Button -->
   <a href="language_selection.html" class="back-button">
     <i class="fas fa-arrow-left"></i> Back
   </a>
 
-  <!-- Container -->
   <div class="container">
     <header data-aos="fade-down">
       <h1>How familiar are you with this language?</h1>
     </header>
 
-   
-
-    <!-- Levels Section -->
     <section class="levels-section">
       <div class="levels">
-        <div class="level-card" data-level="beginner" onclick="goToBeginner()" data-aos="zoom-in" data-aos-delay="100">
-          <i class="fas fa-book-open icon"></i>
-          <h2>Beginner</h2>
-          <p>You're just starting to explore.</p>
-        </div>
+        
+        <a href="contents.html" style="text-decoration: none; color: inherit;">
+          <div class="level-card" data-level="beginner" data-aos="zoom-in" data-aos-delay="100">
+            <i class="fas fa-book-open icon"></i>
+            <h2>Beginner</h2>
+            <p>You're just starting to explore.</p>
+          </div>
+        </a>
 
-        <div class="level-card" data-level="intermediate" onclick="goToIntermediate()"   data-aos="zoom-in" data-aos-delay="200">
-          <i class="fas fa-chart-line icon"></i>
-          <h2>Intermediate</h2>
-          <p>You know the basics and want to improve.</p>
-        </div>
+        <a href="contents3.html" style="text-decoration: none; color: inherit;">
+          <div class="level-card" data-level="intermediate" data-aos="zoom-in" data-aos-delay="200">
+            <i class="fas fa-chart-line icon"></i>
+            <h2>Intermediate</h2>
+            <p>You know the basics and want to improve.</p>
+          </div>
+        </a>
 
-        <div class="level-card" data-level="advanced" onclick="goToAdvanced()" data-aos="zoom-in" data-aos-delay="300">
-          <i class="fas fa-rocket icon"></i>
-          <h2>Advanced</h2>
-          <p>You're confident and looking for mastery.</p>
-        </div>
+        <a href="contents2.html" style="text-decoration: none; color: inherit;">
+          <div class="level-card" data-level="advanced" data-aos="zoom-in" data-aos-delay="300">
+            <i class="fas fa-rocket icon"></i>
+            <h2>Advanced</h2>
+            <p>You're confident and looking for mastery.</p>
+          </div>
+        </a>
+
       </div>
     </section>
 
-    <!-- Benefits Section -->
     <section class="benefits" data-aos="fade-up" data-aos-delay="400">
       <h3>Why choose your level?</h3>
       <ul>
@@ -66,13 +64,6 @@
     </section>
   </div>
 
-  <!-- Footer -->
-  
-
-  <!-- JavaScript -->
-  <script src="script.js"></script>
-
-  <!-- Initialize AOS -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       AOS.init({
