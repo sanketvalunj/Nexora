@@ -1,130 +1,110 @@
 <!DOCTYPE html>
-<html lang="en" id="html-root">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LinguaQuest</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
- <style>
-  @media (max-width: 992px) {
-    .language-grid {
-      grid-template-columns: 1fr !important;
-      gap: 1rem !important;
-    }
-    .language-card {
-      max-width: 400px !important;
-      margin: 0 auto !important;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
-      padding: 1.5rem !important;
-      border-radius: 10px !important;
-      transition: transform 0.2s ease-in-out !important;
-    }
-    .language-card:hover {
-      transform: scale(1.03) !important;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-    }
-  }
-</style>
-
-
-
-  <!-- Your custom styles -->
-  <link rel="stylesheet" href="style.css" />
-
-</head>
-<body>
-
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <h1 class="logo">LinguaQuest</h1>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#"id="contact-link">Contact Us</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- About Modal -->
-  <div id="about-modal" class="modal">
-    <h2>About LinguaQuest</h2>
-    <p>
-      Welcome to <strong>LinguaQuest</strong>, a fun and engaging journey into the world of languages — built by Team Nexora.
-      We're a group of passionate developers dedicated to making language learning simple, interactive, and enjoyable.
-    </p>
-    <div style="text-align: center;">
-      <button onclick="closeModal('about-modal')">Back</button>
-    </div>
-  </div>
-
-  <!-- Contact Modal -->
-  <div id="contact-modal" class="modal">
-    <h2>Contact Us</h2>
-    <p>
-      📧 Email: <a href="mailto:contact@linguaquest.com">contact@linguaquest.com</a><br>
-      📞 Phone: +91 98765 43210<br>
-      🏢 Address: Pune, Maharashtra, India
-    </p>
-    <div style="text-align: center;">
-      <button onclick="closeModal('contact-modal')">Back</button>
-    </div>
-  </div>
-
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <h2 class="hero-title">Welcome to LinguaQuest</h2>
-      <p class="hero-description">Master new languages with interactive lessons, quizzes, and voice training.</p>
-      <a href="language_selection.html" class="get-started">Get Started</a>
-    </div>
-  </section>
-
- 
-  
-     <section class="language-info">
-      <h3 style="text-align:center; font-size: 2rem; margin-bottom: 1rem;">Popular Languages We Offer</h3>
-      <div class="language-grid">
-        <div class="language-card">
-          <img src="https://flagcdn.com/w320/gb.png" alt="English" />
-          <h4>English</h4>
-          <p>Spoken worldwide, English is the global bridge of communication.</p>
+<html lang="en" id="html-root" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LinguaQuest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">LinguaQuest</h1>
+            <ul class="nav-links">
+                <li><a href="#home" class="scroll-link">Home</a></li>
+                <li><a href="#about" class="scroll-link">About</a></li>
+                <li><a href="#contact-support" class="scroll-link">Contact</a></li>
+                <li><a href="#contact-support" class="scroll-link">Support</a></li>
+                <li><a href="#resources" class="scroll-link">Resources</a></li>
+            </ul>
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="theme-toggle">
+                    <input type="checkbox" id="theme-toggle" />
+                    <div class="slider round">
+                        <span class="sun">☀️</span>
+                        <span class="moon">🌙</span>
+                    </div>
+                </label>
+            </div>
         </div>
-        <div class="language-card">
-          <img src="https://flagcdn.com/w320/in.png" alt="Hindi" />
-          <h4>Hindi</h4>
-          <p>One of the most spoken languages in the world, mainly in India.</p>
+    </nav>
+      
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2 class="hero-title" id="hero-title">Welcome to LinguaQuest</h2>
+            <p class="hero-description" id="hero-description">Master new languages with interactive lessons and quizzes.</p>
+            <a href="language_selection.html" class="get-started">Get Started</a>
         </div>
-        <div class="language-card">
-          <img src="https://flagcdn.com/w320/es.png" alt="Spanish" />
-          <h4>Spanish</h4>
-          <p>Used in 20+ countries, Spanish is known for its cultural richness.</p>
-        </div>
-        <div class="language-card">
-          <img src="https://flagcdn.com/w320/fr.png" alt="French" />
-          <h4>French</h4>
-          <p>Language of diplomacy, spoken across Europe and Africa.</p>
-        </div>
-        <div class="language-card">
-          <img src="https://flagcdn.com/w320/jp.png" alt="Japanese" />
-          <h4>Japanese</h4>
-          <p>Learn Japanese to explore anime, culture, and technology.</p>
-        </div>
-      </div>
     </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>Made by <strong>TEAM NEXORA ❤️</strong>. All rights reserved.</p>
-    
-  </footer>
+    <section id="resources" class="language-info">
+        <h3 class="language-heading">Popular Languages We Offer</h3>
+        <div class="language-grid">
+            <div class="language-card">
+                <img src="https://flagcdn.com/w320/gb.png" alt="English" />
+                <h4>English</h4>
+                <p>Spoken worldwide, English is the global bridge of communication.</p>
+            </div>
+            <div class="language-card">
+                <img src="https://flagcdn.com/w320/in.png" alt="Hindi" />
+                <h4>Hindi</h4>
+                <p>One of the most spoken languages in the world, mainly in India.</p>
+            </div>
+            <div class="language-card">
+                <img src="https://flagcdn.com/w320/es.png" alt="Spanish" />
+                <h4>Spanish</h4>
+                <p>Used in 20+ countries, Spanish is known for its cultural richness.</p>
+            </div>
+            <div class="language-card">
+                <img src="https://flagcdn.com/w320/fr.png" alt="French" />
+                <h4>French</h4>
+                <p>Language of diplomacy, spoken across Europe and Africa.</p>
+            </div>
+            <div class="language-card">
+                <img src="https://flagcdn.com/w320/jp.png" alt="Japanese" />
+                <h4>Japanese</h4>
+                <p>Learn Japanese to explore anime, culture, and technology.</p>
+            </div>
+        </div>
+    </section>
 
-  <!-- External JavaScript -->
-  <script src="script.js"></script>
-</body>
+    <section id="about" class="about-section">
+        <h2>About LinguaQuest</h2>
+        <p>
+            Welcome to <strong>LinguaQuest</strong>, a fun and engaging journey into the world of languages, proudly built by Team Nexora.
+        </p>
+        <p>
+            Our name, <strong>Nexora</strong>, represents our commitment to building the <strong>next era</strong> of education. We are a team of passionate developers driven to create immersive and effective learning tools that transcend traditional methods, making language acquisition simple, interactive, and enjoyable for everyone. 
+        </p>
+        <p>
+            With LinguaQuest, we combine technology and creativity to help you explore new languages through personalized exercises and gamified experiences. We believe learning should be a quest, not a chore. That’s why we’re on a mission to break down language barriers and connect people, one word at a time.
+        </p>
+    </section>
+
+    <section id="contact-support" class="contact-info">
+        <div class="contact-container">
+            <div class="contact-card">
+                <h3>Contact Us</h3>
+                <p><strong>Email:</strong> support@linguaquest.com</p>
+                <p><strong>Phone:</strong> +91 98765 43210</p>
+            </div>
+            <div class="contact-card">
+                <h3>Our Address</h3>
+                <p>Team Nexora, 123 Tech Park</p>
+                <p>Pune, Maharashtra, 411001, India</p>
+            </div>
+            <div class="contact-card">
+                <h3>Need Help?</h3>
+                <p>Visit our FAQ page or get in touch with our support team 24/7.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>Made by TEAM NEXORA ❤️. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
 </html>
