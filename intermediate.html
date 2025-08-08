@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Intermediate German Quiz</title>
+<link rel="stylesheet" href="lesson.css">
+
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="score">Score: <span id="score-counter">0</span></div>
+    <div class="lives">Lives: <span id="lives-counter">3</span> ❤</div>
+    <div class="progress-text">Question <span id="current-question">1</span> of <span id="total-questions"></span></div>
+  </div>
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+  <div id="quiz"></div>
+  <div class="result" id="result"></div>
+  <div class="buttons">
+    <button class="btn check" onclick="checkAnswer()">Check</button>
+    <button class="btn next" onclick="nextQuestion()">Next</button>
+    <button class="btn skip" onclick="skipQuestion()">Skip</button>
+  </div>
+</div>
+
+<script src="intermediate.js" s></script>
+</body>
+</html>

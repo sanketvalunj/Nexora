@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Advanced Lessons</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <!-- ✅ Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-C7+O2XbCPuIxH7ZaJHc3QujI0TTTC0YHHBGAnpRrLqD6OW/cLm5TVoL9KhL9vAcF2U+nShQGKJGvZ/7TzFssrg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f0f4ff, #d3e0ff);
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+      background: linear-gradient(to right, black, #333);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+    }
+
+    .back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      text-decoration: none;
+      color: black;
+      font-weight: 600;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      transition: color 0.3s ease;
+    }
+
+    .back-button i {
+      margin-right: 8px;
+    }
+
+    .back-button:hover {
+      color: #ff6b6b;
+    }
+
+    .subheading {
+      font-size: 1.2rem;
+      color: #444;
+      max-width: 650px;
+      margin: 10px auto 30px;
+      text-align: center;
+    }
+
+    .lessons-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .lesson-card {
+      background: linear-gradient(135deg, #e0e6ff 0%, #dcd4f0 100%);
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .lesson-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(108, 99, 255, 0.2);
+    }
+
+    .lesson-card.disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .lesson-card.disabled:hover::after {
+      content: "Coming Soon";
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+
+    .lesson-card h2 {
+      font-size: 1.5rem;
+      color: black;
+      margin-bottom: 10px;
+    }
+
+    .lesson-card p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 0.9rem;
+      color: #888;
+      background: #f8f8f8;
+      border-top: 1px solid #eee;
+      margin-top: auto;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .lessons-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ✅ Working Back Button -->
+  <a href="familiarity.html" class="back-button">
+    <i class="fas fa-arrow-left"></i> Back
+  </a>
+
+  <h1>Advanced Lessons</h1>
+  <div class="subheading">Start your journey with advanced German lessons. More coming soon!</div>
+
+  <div class="lessons-container">
+    <a href="advanced.html">
+      <div class="lesson-card">
+        <h2>Lesson 1</h2>
+        <p>Getting tough</p>
+      </div>
+    </a>
+
+    <div class="lesson-card disabled">
+      <h2>Lesson 2</h2>
+      <p>Coming Soon</p>
+    </div>
+
+    <div class="lesson-card disabled">
+      <h2>Lesson 3</h2>
+      <p>Coming Soon</p>
+    </div>
+
+    <div class="lesson-card disabled">
+      <h2>Lesson 4</h2>
+      <p>Coming Soon</p>
+    </div>
+  </div>
+
+</body>
+</html>
