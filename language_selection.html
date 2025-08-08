@@ -5,16 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Select Your Language - LinguaQuest</title>
 
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="language_selection.css" />
 
-  <!-- AOS Animation Library -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 </head>
 <body>
@@ -30,7 +26,6 @@
   <section class="language-selection">
     <h2>What Do You Want To Learn...</h2>
     <div class="language-grid">
-      <!-- Row 1 -->
       <div class="language-card" data-status="coming-soon" data-aos="fade-up" data-aos-delay="100">
         <img src="https://flagcdn.com/w320/gb.png" alt="English" />
         <h4>English</h4>
@@ -44,11 +39,12 @@
         <h4>Spanish</h4>
       </div>
 
-      <!-- Row 2 - Center Cards -->
-      <div class="language-card" onclick="goToFamiliarity()" data-aos="fade-up" data-aos-delay="400">
-        <img src="https://flagcdn.com/w320/de.png" alt="German" />
-        <h4>German</h4>
-      </div>
+      <a href="familiarity.html" style="text-decoration: none; color: inherit;">
+        <div class="language-card" data-aos="fade-up" data-aos-delay="400">
+          <img src="https://flagcdn.com/w320/de.png" alt="German" />
+          <h4>German</h4>
+        </div>
+      </a>
       <div class="language-card" data-status="coming-soon" data-aos="fade-up" data-aos-delay="500">
         <img src="https://flagcdn.com/w320/in.png" alt="Marathi" />
         <h4>Marathi</h4>
@@ -58,7 +54,6 @@
         <h4>French</h4>
       </div>
 
-      <!-- Row 3 -->
       <div class="language-card"  data-status="coming-soon" data-aos="fade-up" data-aos-delay="700">
         <img src="https://flagcdn.com/w320/jp.png" alt="Japanese" />
         <h4>Japanese</h4>
@@ -66,16 +61,8 @@
     </div>
   </section>
 
-  
-   
-  
-  
-  
-
-  <!-- JavaScript -->
   <script src="script.js"></script>
 
-  <!-- AOS JS -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init({
