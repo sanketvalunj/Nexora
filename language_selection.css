@@ -6,7 +6,7 @@ body {
 }
 
 .navbar {
-  background-color:  #2a3439;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   padding: 15px 30px;
 }
@@ -60,7 +60,7 @@ body {
 }
 
 .language-card {
-  background: #eaeaea;
+  background: #ffffff; /* ✅ Changed to white */
   border: 1px solid #cfcfcf;
   border-radius: 10px;
   padding: 20px;
@@ -69,6 +69,7 @@ body {
   transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease;
   opacity: 1;
 }
+
 
 .language-card:hover {
   transform: scale(1.05);    /* 👈 increase size on hover */
@@ -105,4 +106,26 @@ body {
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
+}
+
+.language-card[data-status="coming-soon"]::after {
+  content: "Coming Soon";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.language-card[data-status="coming-soon"]:hover::after {
+  opacity: 1;
 }
