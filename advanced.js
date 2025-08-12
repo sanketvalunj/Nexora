@@ -97,9 +97,9 @@ totalQuestionsSpan.textContent = quizData.length;
 livesCounter.textContent = lives;
 
 // 🎵 Sound effects
-const correctSound = new Audio("Audio/Audio_correct.mp3");
-const wrongSound = new Audio("Audio/Audio_wrong.mp3");
-const lessonCompleteSound = new Audio("Audio/lesson_complete.mp3");
+const correctSound = new Audio("Audio_correct.mp3");
+const wrongSound = new Audio("Audio_wrong.mp3");
+const lessonCompleteSound = new Audio("lesson_complete.mp3");
 
 // Function to play audio using browser's speech synthesis
 function playAudio(text) {
