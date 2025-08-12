@@ -1,4 +1,4 @@
-/* ADDED: CSS variables for theming */
+
 :root[data-theme="light"] {
     --bg-color: #f8f9fa;
     --text-color: #343a40;
