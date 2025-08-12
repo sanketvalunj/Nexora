@@ -1,3 +1,14 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const username = localStorage.getItem('linguaquest_user') || 'Adventurer';
+    const avatarUrl = localStorage.getItem('linguaquest_avatar') || 'https://api.dicebear.com/8.x/adventurer/svg?seed=Default';
+    const avatarImg = document.getElementById('user-avatar');
+    const nameSpan = document.getElementById('user-name');
+    if (avatarImg && nameSpan) {
+        avatarImg.src = avatarUrl;
+        nameSpan.textContent = username;
+    }
+});
+
 const quizData = [
     {
         question: "Which one is 'Apfel' in German? 🍎",
@@ -87,6 +98,12 @@ const progressBar = document.getElementById("progress-bar");
 totalQuestionsSpan.textContent = quizData.length;
 livesCounter.textContent = lives;
 
+
+// 🎵 Sound effects
+let correctSound = new Audio("Audio/Audio_correct.mp3");
+let wrongSound = new Audio("Audio/Audio_wrong.mp3");
+let lessonCompleteSound = new Audio("Audio/lesson_complete.mp3");
+
 function loadQuestion() {
     if (lives <= 0 || currentIndex >= quizData.length) {
         showSummary();
@@ -147,6 +164,10 @@ function checkAnswer() {
         correct++;
         resultDiv.innerHTML = `<div class="feedback correct"><span class="emoji">✅</span><p>Correct! 🎉</p></div>`;
         selectedElement.classList.add("correct-answer");
+        
+        // ✅ Play correct sound
+        correctSound.currentTime = 0;
+        correctSound.play();
     } else {
         wrong++;
         lives--;
@@ -154,21 +175,29 @@ function checkAnswer() {
         resultDiv.innerHTML = `<div class="feedback wrong"><span class="emoji">❌</span><p>Wrong! The correct answer is ${q.options[correctAnswerIndex].text || q.options[correctAnswerIndex].icon}</p></div>`;
         selectedElement.classList.add("wrong-answer");
         correctAnswerElement.classList.add("correct-answer");
+        
+        // ❌ Play wrong sound
+        wrongSound.currentTime = 0;
+        wrongSound.play();
     }
 
     scoreCounter.textContent = score;
     checkBtn.style.display = "none";
     nextBtn.style.display = "inline-block";
     skipBtn.style.display = "none";
+
+    saveQuizState();  // <<<<< Added save here
 }
 
 function nextQuestion() {
     currentIndex++;
+    saveQuizState();  // <<<<< Added save here
     loadQuestion();
 }
 
 function skipQuestion() {
     currentIndex++;
+    saveQuizState();  // <<<<< Added save here
     loadQuestion();
 }
 
@@ -177,12 +206,16 @@ function updateProgressBar() {
     progressBar.style.width = progress + "%";
 }
 
-// NEW showSummary function
 function showSummary() {
+    // 🎵 Play completion sound
+    lessonCompleteSound.play();
+    document.querySelector('.buttons').style.display = 'none';
     quizDiv.innerHTML = "";
     checkBtn.style.display = "none";
     nextBtn.style.display = "none";
     skipBtn.style.display = "none";
+     
+
     progressBar.style.width = "100%";
 
     const skipped = quizData.length - attempted;
@@ -191,7 +224,6 @@ function showSummary() {
     const percentSkipped = Math.round((skipped / quizData.length) * 100);
     const currentDateTime = new Date().toLocaleString();
 
-    // Emoji based on performance
     let performanceEmoji = "👍";
     if (percentCorrect >= 90) performanceEmoji = "🏆";
     else if (percentCorrect >= 75) performanceEmoji = "🎉";
@@ -206,56 +238,26 @@ function showSummary() {
         <div class="summary-icon" aria-hidden="true">${performanceEmoji}</div>
 
         <div class="summary-stats">
-          <div class="stat" data-tooltip="Total number of questions in the quiz">
-            <h3>Total Questions</h3>
-            <p>${quizData.length}</p>
-          </div>
-          <div class="stat" data-tooltip="Questions you attempted to answer">
-            <h3>Attempted</h3>
-            <p>${attempted}</p>
-          </div>
-          <div class="stat" data-tooltip="Number of questions you answered correctly">
-            <h3>Correct</h3>
-            <p>${correct}</p>
-          </div>
-          <div class="stat" data-tooltip="Number of questions answered incorrectly">
-            <h3>Wrong</h3>
-            <p>${wrong}</p>
-          </div>
-          <div class="stat" data-tooltip="Questions you skipped">
-            <h3>Skipped</h3>
-            <p>${skipped}</p>
-          </div>
-          <div class="stat" data-tooltip="Total points scored in the quiz">
-            <h3>Score</h3>
-            <p>${score}</p>
-          </div>
+          <div class="stat"><h3>Total Questions</h3><p>${quizData.length}</p></div>
+          <div class="stat"><h3>Attempted</h3><p>${attempted}</p></div>
+          <div class="stat"><h3>Correct</h3><p>${correct}</p></div>
+          <div class="stat"><h3>Wrong</h3><p>${wrong}</p></div>
+          <div class="stat"><h3>Skipped</h3><p>${skipped}</p></div>
+          <div class="stat"><h3>Score</h3><p>${score}</p></div>
         </div>
 
-        <div class="progress-summary" aria-label="Answer correctness distribution">
-          <div class="progress-bar-label">
-            <span>Correct</span><span>${percentCorrect}%</span>
-          </div>
-          <div class="progress-bar-inner" role="progressbar" aria-valuenow="${percentCorrect}" aria-valuemin="0" aria-valuemax="100" aria-label="Percentage of correct answers">
-            <div class="progress-bar-fill correct-fill" style="width: ${percentCorrect}%;"></div>
-          </div>
+        <div class="progress-summary">
+          <div class="progress-bar-label"><span>Correct</span><span>${percentCorrect}%</span></div>
+          <div class="progress-bar-inner"><div class="progress-bar-fill correct-fill" style="width: ${percentCorrect}%;"></div></div>
 
-          <div class="progress-bar-label">
-            <span>Wrong</span><span>${percentWrong}%</span>
-          </div>
-          <div class="progress-bar-inner" role="progressbar" aria-valuenow="${percentWrong}" aria-valuemin="0" aria-valuemax="100" aria-label="Percentage of wrong answers">
-            <div class="progress-bar-fill wrong-fill" style="width: ${percentWrong}%;"></div>
-          </div>
+          <div class="progress-bar-label"><span>Wrong</span><span>${percentWrong}%</span></div>
+          <div class="progress-bar-inner"><div class="progress-bar-fill wrong-fill" style="width: ${percentWrong}%;"></div></div>
 
-          <div class="progress-bar-label">
-            <span>Skipped</span><span>${percentSkipped}%</span>
-          </div>
-          <div class="progress-bar-inner" role="progressbar" aria-valuenow="${percentSkipped}" aria-valuemin="0" aria-valuemax="100" aria-label="Percentage of skipped answers">
-            <div class="progress-bar-fill skipped-fill" style="width: ${percentSkipped}%;"></div>
-          </div>
+          <div class="progress-bar-label"><span>Skipped</span><span>${percentSkipped}%</span></div>
+          <div class="progress-bar-inner"><div class="progress-bar-fill skipped-fill" style="width: ${percentSkipped}%;"></div></div>
         </div>
 
-        <button class="btn restart-btn" onclick="restartQuiz()" aria-label="Restart Quiz">Restart</button>
+        <button class="btn restart-btn" onclick="restartQuiz()">Restart</button>
         <button onclick="window.location.href='contents.html'" class="btn restart-btn">Go to Contents</button>
       </div>
     `;
@@ -264,7 +266,6 @@ function showSummary() {
     quizDiv.innerHTML = summaryHtml;
 }
 
-// NEW restartQuiz function
 function restartQuiz() {
   currentIndex = 0;
   selected = null;
@@ -277,7 +278,48 @@ function restartQuiz() {
   scoreCounter.textContent = score;
   livesCounter.textContent = lives;
   currentQuestionSpan.textContent = currentIndex + 1;
+
+  localStorage.removeItem('quizState');  // <<<<< Clear saved state on restart
+    document.querySelector('.buttons').style.display = 'flex';
   loadQuestion();
 }
 
-window.onload = loadQuestion;
+// ======== localStorage save/load functions ========
+function saveQuizState() {
+    const quizState = {
+        currentIndex,
+        selected,
+        score,
+        attempted,
+        correct,
+        wrong,
+        lives,
+        hasAttempted
+    };
+    localStorage.setItem('quizState', JSON.stringify(quizState));
+}
+
+function loadQuizState() {
+    const saved = localStorage.getItem('quizState');
+    if (saved) {
+        const state = JSON.parse(saved);
+        currentIndex = state.currentIndex || 0;
+        selected = state.selected;
+        score = state.score || 0;
+        attempted = state.attempted || 0;
+        correct = state.correct || 0;
+        wrong = state.wrong || 0;
+        lives = state.lives || 3;
+        hasAttempted = state.hasAttempted || false;
+
+        scoreCounter.textContent = score;
+        livesCounter.textContent = lives;
+        currentQuestionSpan.textContent = currentIndex + 1;
+    }
+}
+
+// Load saved quiz state first, then load the question
+window.onload = function () {
+    loadQuizState();
+    loadQuestion();
+};
