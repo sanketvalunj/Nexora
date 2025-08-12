@@ -100,9 +100,9 @@ livesCounter.textContent = lives;
 
 
 // 🎵 Sound effects
-let correctSound = new Audio("Audio/Audio_correct.mp3");
-let wrongSound = new Audio("Audio/Audio_wrong.mp3");
-let lessonCompleteSound = new Audio("Audio/lesson_complete.mp3");
+let correctSound = new Audio("Audio_correct.mp3");
+let wrongSound = new Audio("Audio_wrong.mp3");
+let lessonCompleteSound = new Audio("lesson_complete.mp3");
 
 function loadQuestion() {
     if (lives <= 0 || currentIndex >= quizData.length) {
