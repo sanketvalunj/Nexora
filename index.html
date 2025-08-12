@@ -8,15 +8,16 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    
     <nav class="navbar">
         <div class="nav-container">
             <h1 class="logo">LinguaQuest</h1>
             <ul class="nav-links">
                 <li><a href="#home" class="scroll-link">Home</a></li>
-                <li><a href="#about" class="scroll-link">About</a></li>
+                <li><a href="#footer" class="scroll-link">About</a></li>
                 <li><a href="#contact-support" class="scroll-link">Contact</a></li>
                 <li><a href="#contact-support" class="scroll-link">Support</a></li>
-                <li><a href="#resources" class="scroll-link">Resources</a></li>
+                <li><a href="resource_selection.html">Resources</a></li>
             </ul>
             <div class="theme-switch-wrapper">
                 <label class="theme-switch" for="theme-toggle">
@@ -34,7 +35,7 @@
         <div class="hero-content">
             <h2 class="hero-title" id="hero-title">Welcome to LinguaQuest</h2>
             <p class="hero-description" id="hero-description">Master new languages with interactive lessons and quizzes.</p>
-            <a href="language_selection.html" class="get-started">Get Started</a>
+            <a href="profile.html" class="get-started">Get Started</a>
         </div>
     </section>
 
@@ -66,21 +67,29 @@
                 <h4>Japanese</h4>
                 <p>Learn Japanese to explore anime, culture, and technology.</p>
             </div>
+             <!-- German Card -->
+            <div class="language-card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="German">
+                <h2>German</h2>
+                <p class="card-desc">Learn German — the language of innovation, culture, and opportunity in Europe.</p>
+            </div>
         </div>
     </section>
 
-    <section id="about" class="about-section">
+    <section class="vision-mission-section">
         <h2>About LinguaQuest</h2>
-        <p>
-            Welcome to <strong>LinguaQuest</strong>, a fun and engaging journey into the world of languages, proudly built by Team Nexora.
-        </p>
-        <p>
-            Our name, <strong>Nexora</strong>, represents our commitment to building the <strong>next era</strong> of education. We are a team of passionate developers driven to create immersive and effective learning tools that transcend traditional methods, making language acquisition simple, interactive, and enjoyable for everyone. 
-        </p>
-        <p>
-            With LinguaQuest, we combine technology and creativity to help you explore new languages through personalized exercises and gamified experiences. We believe learning should be a quest, not a chore. That’s why we’re on a mission to break down language barriers and connect people, one word at a time.
-        </p>
+        <div class="vm-container">
+            <div class="vm-card">
+                <h3>Vision</h3>
+                <p>To make language learning accessible, engaging, and enjoyable for everyone, breaking down cultural barriers and connecting people worldwide.</p>
+            </div>
+            <div class="vm-card">
+                <h3>Mission</h3>
+                <p>To create innovative, interactive, and gamified learning experiences that inspire learners to master new languages with confidence and fun.</p>
+            </div>
+        </div>
     </section>
+    
 
     <section id="contact-support" class="contact-info">
         <div class="contact-container">
@@ -101,7 +110,7 @@
         </div>
     </section>
 
-    <footer class="footer">
+    <footer class="footer" id="footer">
         <p>Made by TEAM NEXORA ❤️. All rights reserved.</p>
     </footer>
 
