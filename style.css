@@ -349,7 +349,6 @@ input:not(:checked) + .slider .sun {
 input:checked + .slider .moon {
     opacity: 1;
 }
-/* ... (Your existing CSS code) ... */
 
 /* Vision Mission Section */
 .vision-mission-section {
@@ -394,3 +393,106 @@ input:checked + .slider .moon {
     color: var(--card-text); /* Corrected: Use CSS variable */
 }
 
+/* ===================== */
+/* 📱 Responsive Design  */
+/* ===================== */
+
+/* Hiding the hamburger button on larger screens by default */
+.menu-toggle {
+    display: none;
+}
+
+/* Tablet adjustments */
+@media (max-width: 992px) {
+    .nav-links {
+        gap: 15px;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-description {
+        font-size: 1.1rem;
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    /* Navbar becomes hamburger */
+    .nav-container {
+        flex-wrap: wrap;
+        padding: 1rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        display: none; /* Hide by default on mobile */
+        background-color: var(--nav-bg);
+        padding: 15px 0;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    /* This class is toggled by JavaScript */
+    .nav-links.active {
+        display: flex; /* Show when active */
+    }
+
+    /* Mobile hamburger button */
+    .menu-toggle {
+        display: block; /* Make the hamburger button visible */
+        background: none;
+        border: none;
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: var(--logo-color);
+    }
+    
+    /* Hero section */
+    .hero {
+        padding: 60px 20px;
+    }
+    .hero-title {
+        font-size: 2rem;
+    }
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    /* Language grid */
+    .language-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    .language-card {
+        max-width: 100%;
+    }
+
+    /* Contact section stacks */
+    .contact-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Vision/Mission stacks */
+    .vm-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.7rem;
+    }
+    .hero-description {
+        font-size: 0.95rem;
+    }
+    .get-started {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+}
