@@ -6,10 +6,17 @@
 <title>Intermediate German Quiz</title>
 <link rel="stylesheet" href="lesson.css">
 
+
+</style>
+
 </head>
 <body>
 <div class="container">
   <div class="header">
+       <div class="user-profile">
+            <img id="user-avatar" src="" alt="User Avatar">
+            <span id="user-name"></span>
+        </div>
     <div class="score">Score: <span id="score-counter">0</span></div>
     <div class="lives">Lives: <span id="lives-counter">3</span> ❤</div>
     <div class="progress-text">Question <span id="current-question">1</span> of <span id="total-questions"></span></div>
@@ -23,8 +30,40 @@
     <button class="btn check" onclick="checkAnswer()">Check</button>
     <button class="btn next" onclick="nextQuestion()">Next</button>
     <button class="btn skip" onclick="skipQuestion()">Skip</button>
+    <button class="btn quit-btn" id="quit-button">Quit</button>
   </div>
 </div>
+<div class="quit-overlay" id="quit-overlay">
+  <div class="quit-box">
+    <p>Are you sure you want to quit the quiz?</p>
+    <div class="quit-actions">
+      <button class="btn confirm-quit-btn" id="confirm-quit">Quit</button>
+      <button class="btn cancel-quit-btn" id="cancel-quit">Cancel</button>
+    </div>
+  </div>
+</div>
+<script>
+  // Get the buttons and the overlay element
+const quitBtn = document.getElementById("quit-button");
+const quitOverlay = document.getElementById("quit-overlay");
+const confirmQuitBtn = document.getElementById("confirm-quit");
+const cancelQuitBtn = document.getElementById("cancel-quit");
+
+// Show the full-screen overlay when the 'Quit' button is clicked
+quitBtn.addEventListener('click', () => {
+    quitOverlay.style.display = 'flex';
+});
+
+// Hide the overlay when the 'Cancel' button is clicked
+cancelQuitBtn.addEventListener('click', () => {
+    quitOverlay.style.display = 'none';
+});
+
+// When the 'Quit' button inside the overlay is clicked, redirect the user
+confirmQuitBtn.addEventListener('click', () => {
+    window.location.href = 'contents3.html';
+});
+</script>
 
 <script src="intermediate.js" s></script>
 </body>
