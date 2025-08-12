@@ -579,3 +579,213 @@ body {
     margin-top: 15px;
     margin-bottom: 15px;
   }
+/* Drag and Drop styles */
+.dnd-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  /* Updated background color for a whitish-grey look */
+  background-color: #e0e0e0;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.drop-zone {
+  border: 2px dashed #99aab5;
+  /* Updated background color */
+  background-color: #f0f0f0;
+  min-height: 80px;
+  align-items: center;
+}
+
+.drop-zone.correct {
+  border-color: #4CAF50;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+  animation: pulse-correct 0.8s ease-in-out;
+}
+
+.drop-zone.incorrect {
+  border-color: #f44336;
+  box-shadow: 0 0 10px rgba(244, 67, 54, 0.5);
+  animation: shake-drop-zone 0.5s;
+}
+
+@keyframes pulse-correct {
+  0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+}
+
+@keyframes shake-drop-zone {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+
+.word-bank {
+  border: 2px solid #ccc;
+  background-color: #fff;
+}
+
+.word-chip {
+  cursor: grab;
+  padding: 10px 15px;
+  background-color: #007BFF;
+  color: white;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  user-select: none;
+}
+
+.word-chip.dragging {
+  opacity: 0.5;
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.drop-slot {
+  width: auto;
+  min-width: 80px;
+  height: 45px;
+  border-bottom: 2px solid #aaa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.drop-slot.drag-over {
+  background-color: #cfe2ff;
+}
+
+/* Updated styles for the check button */
+.btn.check-btn {
+  background-color: #007BFF; /* Blue color */
+  color: white;
+  border: none;
+  margin-top: 20px;
+}
+
+.btn-correct {
+  background-color: #4CAF50; /* Green color */
+}
+
+.btn-incorrect {
+  background-color: #f44336; /* Red color */
+}
+.option-btn{
+   
+  gap: 10px;
+  background-color: #3366CC; /* Blue color */
+  color: white;
+  border: none;
+  padding: 10px 20px; /* Adjust padding as needed */
+  border-radius: 25px; /* Creates rounded corners */
+  font-size: 16px; /* Adjust font size */
+  cursor: pointer;
+    margin-right: 10px;
+}
+.mcq-options{
+  display: flex; /* Arranges items in a row or column */
+  flex-direction: column; /* Stacks the buttons vertically */
+  align-items: center; /* Centers the buttons horizontally */
+  gap: 15px; /* Adds space between each button */
+  padding: 20px;
+  background-color: #f0f2f5;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+
+}
+.audio-player {
+  display: flex;
+  justify-content: center; /* Centers the button horizontally */
+  align-items: center;
+  margin: 20px 0; /* Adds some space above and below the player */
+}
+.play-audio-btn {
+  background-color: #4a69bd; /* A clean, modern blue */
+  color: white; /* White icon color */
+  border: none;
+  border-radius: 50%; /* Makes the button perfectly round */
+  width: 45px;
+  height: 45px;
+  font-size: 1.2rem; /* Increases the icon size */
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  display: flex; /* Centers the icon */
+  justify-content: center;
+  align-items: center;
+}
+/* Styling for the Quit Button */
+.quit-btn {
+  background-color: #dc3545; /* A distinct red color */
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.quit-btn:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
+/* Styling for the full-screen overlay */
+.quit-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+  display: none; /* Hidden by default */
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Ensures it's on top of other content */
+}
+
+/* Styling for the centered confirmation box */
+.quit-box {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.quit-box p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.quit-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Button styling for the modal */
+.confirm-quit-btn {
+  background-color: #dc3545; /* Red for quit */
+  color: white;
+}
+
+.confirm-quit-btn:hover {
+  background-color: #c82333;
+}
+
+.cancel-quit-btn {
+  background-color: #6c757d; /* Gray for cancel */
+  color: white;
+}
+
+.cancel-quit-btn:hover {
+  background-color: #5a6268;
+}
