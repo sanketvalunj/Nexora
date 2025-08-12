@@ -1,0 +1,136 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f0f4ff, #d3e0ff);
+  color: #333;
+}
+
+header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+header p {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+}
+
+main {
+  padding: 2rem;
+}
+
+.category {
+  margin-bottom: 3rem;
+}
+
+.category h2 {
+  font-size: 1.8rem;
+  color: #004aad;
+  margin-bottom: 1rem;
+}
+
+.resource-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.resource-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  flex: 1 1 300px;
+  max-width: 300px;
+}
+
+.resource-card h3 {
+  margin-top: 0;
+}
+
+.resource-card a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #004aad;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #eee;
+  font-size: 0.9rem;
+}
+
+.video-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.video-card {
+  flex: 1 1 300px;
+  max-width: 480px;
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.video-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.youtube-player {
+  width: 100%;
+  height: 200px;
+}
+
+/* --- Animation Styles --- */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+header {
+  position: relative; /* Ensures absolute child positioning works */
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  text-decoration: none;
+  /* color: #6c63ff; */
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.back-button i {
+  margin-right: 8px;
+}
+
+.back-button:hover {
+  color: #ff6b6b;
+}
+

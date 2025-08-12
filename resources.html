@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LingaQuest | Language Resources</title>
+  <link rel="stylesheet" href="resources.css" />
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+</head>
+<body>
+  <header>
+    <a href="resource_selection.html" class="back-button">
+    <i class="fas fa-arrow-left"></i> Back
+  </a>
+
+    <h1>Resources</h1>
+    <p>Curated tools, guides, and videos to help you master new language.</p>
+  </header>
+
+  <main>
+    <!-- Grammar -->
+    <section class="category">
+      <h2>📘 Grammar Guides</h2>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <h3>German Grammar Basics</h3>
+          <p>A beginner PDF covering essential grammar rules.</p>
+          <a href="PDF/Germangrammar.pdf" download>Download PDF</a>
+        </div>
+        <div class="resource-card">
+          <h3>German Tenses Guide</h3>
+          <p>A printable guide to German verb conjugation.</p>
+          <a href="PDF/Germantenses.pdf" download>Download PDF</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vocabulary -->
+    <section class="category">
+      <h2>📚 Vocabulary Lists</h2>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <h3>Top German Words</h3>
+          <p>Essential vocabulary for beginners learning German.</p>
+          <a href="PDF/Germanvocabulary.pdf" download>Download List</a>
+        </div>
+        <div class="resource-card">
+          <h3>German Daily Use Words</h3>
+          <p>Common words related to daily routine in German.</p>
+          <a href="PDF/Basicgermanword.pdf" download>Download PDF</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Listening & Speaking Practice -->
+    <section class="category">
+      <h2>🎧 Listening & Speaking Practice</h2>
+      <div class="resource-grid video-grid">
+        <div class="video-card">
+          <h3>German Tenses</h3>
+          <div id="player1" class="youtube-player"></div>
+        </div>
+        <div class="video-card">
+          <h3>German Conversation for Beginners</h3>
+          <div id="player2" class="youtube-player"></div>
+        </div>
+        <div class="video-card">
+          <h3>German Listening Practice</h3>
+          <div id="player3" class="youtube-player"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Worksheets -->
+    <section class="category">
+      <h2>📝 Practice Worksheets</h2>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <h3>Basic German Exercises</h3>
+          <p>Printable practice sheets for grammar and vocabulary.</p>
+          <a href="PDF/germanpractice2.pdf" download>Download Worksheets</a>
+        </div>
+        <div class="resource-card">
+          <h3>German Verb Drill</h3>
+          <p>Practice worksheet for verb conjugations in German.</p>
+          <a href="PDF/germanpractice1.pdf" download>Download PDF</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; Made by <b>TEAM NEXORA</b>❤️. All rights reserved.</p>
+  </footer>
+
+  <!-- YouTube Player Script -->
+  <script>
+    var players = [];
+
+    function onYouTubeIframeAPIReady() {
+      players.push(new YT.Player('player1', {
+        videoId: 'ozhQonpciSA',
+        events: { 'onStateChange': onPlayerStateChange },
+        playerVars: { rel: 0, modestbranding: 1 }
+      }));
+
+      players.push(new YT.Player('player2', {
+        videoId: 'nf1rzqG3nvA',
+        events: { 'onStateChange': onPlayerStateChange },
+        playerVars: { rel: 0, modestbranding: 1 }
+      }));
+
+      players.push(new YT.Player('player3', {
+        videoId: 'vb081AX3V5Y',
+        events: { 'onStateChange': onPlayerStateChange },
+        playerVars: { rel: 0, modestbranding: 1 }
+      }));
+    }
+
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.PLAYING) {
+        players.forEach(player => {
+          if (player !== event.target) {
+            player.pauseVideo();
+          }
+        });
+      }
+    }
+  </script>
+
+</body>
+</html>

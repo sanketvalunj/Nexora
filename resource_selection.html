@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ 
+  <title>Select Your Language - LinguaQuest</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="language_selection.css" />
+
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+</head>
+<body>
+   
+  <nav class="navbar">
+    <div class="nav-container">
+      <h1 class="logo">LinguaQuest</h1>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="language-selection">
+    <h2>Choose language for resources </h2>
+    <div class="language-grid">
+      <div class="language-card" data-status="coming-soon" data-aos="fade-up" data-aos-delay="100">
+        <img src="https://flagcdn.com/w320/gb.png" alt="English" />
+        <h4>English</h4>
+      </div>
+      <div class="language-card" data-status="coming-soon" data-aos="fade-up" data-aos-delay="200">
+        <img src="https://flagcdn.com/w320/in.png" alt="Hindi" />
+        <h4>Hindi</h4>
+      </div>
+      <div class="language-card" data-status="coming-soon" data-aos="fade-up" data-aos-delay="300">
+        <img src="https://flagcdn.com/w320/es.png" alt="Spanish" />
+        <h4>Spanish</h4>
+      </div>
+
+      <a href="resources.html" style="text-decoration: none; color: inherit;">
+        <div class="language-card" data-aos="fade-up" data-aos-delay="400">
+          <img src="https://flagcdn.com/w320/de.png" alt="German" />
+          <h4>German</h4>
+        </div>
+      </a>
+      <div class="language-card" data-status="coming-soon" data-aos="fade-up" data-aos-delay="500">
+        <img src="https://flagcdn.com/w320/in.png" alt="Marathi" />
+        <h4>Marathi</h4>
+      </div>
+      <div class="language-card" data-status="coming-soon" data-aos="fade-up" data-aos-delay="600">
+        <img src="https://flagcdn.com/w320/fr.png" alt="French" />
+        <h4>French</h4>
+      </div>
+
+      <div class="language-card"  data-status="coming-soon" data-aos="fade-up" data-aos-delay="700">
+        <img src="https://flagcdn.com/w320/jp.png" alt="Japanese" />
+        <h4>Japanese</h4>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+</body>
+</html>
