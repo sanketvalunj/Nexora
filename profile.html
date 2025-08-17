@@ -5,22 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Your Profile - LinguaQuest</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
     <style>
-        body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .profile-container { max-width: 800px; margin: 40px auto; padding: 40px; background: linear-gradient(135deg, #d0dbff 0%, #e5d4f6 100%);; backdrop-filter: blur(10px); border-radius: 20px; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2); text-align: center; }
-        .profile-container h2 { font-size: 2.5rem; margin-bottom: 25px; color: #2d3748; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Hide scrollbars */
+        }
+        
+        #physics-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Place it behind everything else */
+        }
+
+        .profile-container {
+            max-width: 800px;
+            width: 90%;
+            margin: 40px auto;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(208, 219, 255, 0.8) 0%, rgba(229, 212, 246, 0.8) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            text-align: center;
+        }
+        
+        .profile-container h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: #2d3748;
+        }
+
         .form-group { margin-bottom: 30px; }
-        .form-group label { display: block; font-weight: 600; margin-bottom: 12px; font-size: 1.2rem; color: #333; }
-        .form-group input { width: 80%; padding: 12px; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem; }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 80%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        .form-group input::placeholder {
+            color: #888;
+        }
+
         .avatar-selection { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-        .avatar { cursor: pointer; border: 4px solid transparent; border-radius: 50%; padding: 5px; transition: all 0.3s ease; }
+        
+        .avatar {
+            cursor: pointer;
+            border: 4px solid transparent;
+            border-radius: 50%;
+            padding: 5px;
+            transition: all 0.3s ease;
+        }
+
         .avatar img { width: 100px; border-radius: 50%; }
-        .avatar.selected { border-color: #43a047; transform: scale(1.1); }
-        .next-btn { background: #43a047; color: white; padding: 15px 40px; border-radius: 50px; font-weight: bold; text-decoration: none; border: none; font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease; }
-        .next-btn:hover { background: #388e3c; }
+        
+        .avatar.selected {
+            border-color: #43a047;
+            transform: scale(1.1);
+        }
+        
+        .next-btn {
+            background: #43a047;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .next-btn:hover {
+            background: #388e3c;
+        }
     </style>
 </head>
 <body>
+    <canvas id="physics-background"></canvas>
+    
     <div class="profile-container">
         <h2>Let's Get Started!</h2>
         <form id="profile-form">
@@ -56,6 +141,7 @@
             });
         });
 
+        // --- CORRECTED FORM SUBMISSION LOGIC ---
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             const username = document.getElementById('username').value;
@@ -68,7 +154,103 @@
             localStorage.setItem('linguaquest_user', username);
             localStorage.setItem('linguaquest_avatar', selectedAvatar);
             
+            // This line was added to actually redirect the user
             window.location.href = 'language_selection.html';
+        });
+
+        // --- Falling Words Physics Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const { Engine, Render, Runner, Bodies, Composite, Events } = Matter;
+
+            const engine = Engine.create();
+            engine.gravity.y = 0.2; 
+            const world = engine.world;
+
+            const canvas = document.getElementById('physics-background');
+            const render = Render.create({
+                canvas: canvas,
+                engine: engine,
+                options: {
+                    width: window.innerWidth,
+                    height: window.innerHeight,
+                    wireframes: false,
+                    background: 'transparent'
+                }
+            });
+
+            Render.run(render);
+            const runner = Runner.create();
+            Runner.run(runner, engine);
+
+            const fallingWords = [
+                'Hello', '你好', 'Hola', 'Bonjour', 'Привет', 'こんにちは', '안녕하세요', 'Guten Tag',
+                '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+                'α', 'β', 'γ', 'δ', 'Σ', 'π', 'Ω', 'μ',
+                '语', '文', '数', '学', '愛', '猫', '友', '家'
+            ];
+            const colors = ['#2d3748', '#4A5568', '#718096', '#2c5282', '#8a2be2', '#5f27cd'];
+
+            const ground = Bodies.rectangle(window.innerWidth / 2, window.innerHeight + 30, window.innerWidth, 60, { isStatic: true });
+            const leftWall = Bodies.rectangle(-30, window.innerHeight / 2, 60, window.innerHeight, { isStatic: true });
+            const rightWall = Bodies.rectangle(window.innerWidth + 30, window.innerHeight / 2, 60, window.innerHeight, { isStatic: true });
+            Composite.add(world, [ground, leftWall, rightWall]);
+
+            const addWord = () => {
+                const word = fallingWords[Math.floor(Math.random() * fallingWords.length)];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const fontSize = Math.random() * 15 + 18;
+                const x = Math.random() * window.innerWidth;
+                
+                const body = Bodies.rectangle(x, -50, word.length * (fontSize / 1.8), fontSize, {
+                    frictionAir: 0.02,
+                    restitution: 0.3, 
+                    render: {
+                        fillStyle: 'transparent',
+                        strokeStyle: 'transparent'
+                    },
+                    customText: {
+                        content: word,
+                        size: fontSize,
+                        color: color
+                    }
+                });
+
+                Composite.add(world, body);
+            };
+
+            setInterval(addWord, 500);
+
+            Events.on(render, 'afterRender', () => {
+                const context = render.context;
+                const bodies = Composite.allBodies(world);
+
+                context.save();
+                for (const body of bodies) {
+                    if (body.customText) {
+                        context.translate(body.position.x, body.position.y);
+                        context.rotate(body.angle);
+                        context.textAlign = 'center';
+                        context.textBaseline = 'middle';
+                        context.font = `${body.customText.size}px 'Poppins', sans-serif`;
+                        context.fillStyle = body.customText.color;
+                        context.fillText(body.customText.content, 0, 0);
+                        context.rotate(-body.angle);
+                        context.translate(-body.position.x, -body.position.y);
+                    }
+                }
+                context.restore();
+            });
+
+            window.addEventListener('resize', () => {
+                render.bounds.max.x = window.innerWidth;
+                render.bounds.max.y = window.innerHeight;
+                render.options.width = window.innerWidth;
+                render.options.height = window.innerHeight;
+                render.canvas.width = window.innerWidth;
+                render.canvas.height = window.innerHeight;
+                Matter.Body.setPosition(ground, { x: window.innerWidth / 2, y: window.innerHeight + 30 });
+                Matter.Body.setPosition(rightWall, { x: window.innerWidth + 30, y: window.innerHeight / 2 });
+            });
         });
     </script>
 </body>
