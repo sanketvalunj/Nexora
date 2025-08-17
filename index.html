@@ -12,7 +12,8 @@
         :root {
             /* Light Theme Variables */
             --primary-color: #007BFF;
-            --bg-main: #F4F4F7; /* Light grey background */
+            --bg-body: linear-gradient(135deg, #d0dbff 0%, #e5d4f6 100%); /* Gradient for light mode body */
+            --bg-main: #F4F4F7; /* Solid color for smaller elements */
             --bg-section: #FFFFFF; /* White for raised elements */
             --text-main: #111827; /* Near-black for text */
             --text-logo: #111827;
@@ -26,6 +27,7 @@
         html[data-theme="dark"] {
             /* Dark Theme Variables */
             --primary-color: #38BDF8; /* A nice light blue for dark mode */
+            --bg-body: #111827; /* Solid dark color for dark mode body */
             --bg-main: #111827; /* Very dark blue/grey */
             --bg-section: #1F2937; /* Lighter dark grey */
             --text-main: #F9FAFB;
@@ -44,11 +46,11 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #d0dbff 0%, #e5d4f6 100%);
+            background: var(--bg-body); /* Use the new body background variable */
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
