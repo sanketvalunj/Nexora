@@ -1,121 +1,301 @@
 <!DOCTYPE html>
-<html lang="en" id="html-root" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LinguaQuest</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    
-    <nav class="navbar">
-        <div class="nav-container">
-            <h1 class="logo">LinguaQuest</h1>
-            <div class="theme-switch-wrapper">
-                <label class="theme-switch" for="theme-toggle">
-                    <input type="checkbox" id="theme-toggle" />
-                    <div class="slider round">
-                        <span class="sun">☀️</span>
-                        <span class="moon">🌙</span>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinguaQuest - Master New Languages</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Modern Grey Color Palette */
+        :root {
+            /* Light Theme Variables */
+            --primary-color: #007BFF;
+            --bg-main: #F4F4F7; /* Light grey background */
+            --bg-section: #FFFFFF; /* White for raised elements */
+            --text-main: #111827; /* Near-black for text */
+            --text-logo: #111827;
+            --text-light: #6B7280; /* Lighter grey for secondary text */
+            --border-color: #E5E7EB;
+            --shadow-color-light: rgba(0, 0, 0, 0.03);
+            --shadow-color-heavy: rgba(0, 0, 0, 0.07);
+            --white: #ffffff;
+        }
+
+        html[data-theme="dark"] {
+            /* Dark Theme Variables */
+            --primary-color: #38BDF8; /* A nice light blue for dark mode */
+            --bg-main: #111827; /* Very dark blue/grey */
+            --bg-section: #1F2937; /* Lighter dark grey */
+            --text-main: #F9FAFB;
+            --text-logo: #ffffff;
+            --text-light: #9CA3AF;
+            --border-color: #374151;
+            --shadow-color-light: rgba(0, 0, 0, 0.1);
+            --shadow-color-heavy: rgba(0, 0, 0, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth; /* Enables smooth scrolling for the whole page */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #d0dbff 0%, #e5d4f6 100%);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Layout wrapper for header and footer */
+        .header-wrapper, .footer-wrapper {
+            padding: 20px;
+        }
+        .header-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Mirror-like Header and Footer */
+        .main-header, .footer {
+            padding: 15px 30px;
+            background-color: color-mix(in srgb, var(--bg-section) 50%, transparent);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            box-shadow: 0 4px 10px var(--shadow-color-heavy);
+            transition: all 0.3s ease;
+        }
+
+        .main-nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 800; font-size: 1.5rem; color: var(--text-logo); text-decoration: none; transition: color 0.3s ease; }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a { text-decoration: none; color: var(--text-light); font-weight: 500; transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--text-main); }
+        .nav-actions { display: flex; align-items: center; gap: 20px; }
+        
+        /* Button Style */
+        .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 600; background: transparent; border: 1px solid var(--border-color); color: var(--text-main); transition: all 0.3s ease; }
+        .btn:hover { background-color: var(--primary-color); color: var(--white); border-color: var(--primary-color); transform: translateY(-2px); }
+        html[data-theme="dark"] .btn:hover { color: #111827; }
+        .btn .icon { transition: transform 0.3s ease; }
+        .btn:hover .icon { transform: translateX(3px); }
+
+        /* Modern Theme Toggle */
+        .theme-toggle { display: flex; align-items: center; background-color: var(--bg-main); border-radius: 50px; padding: 4px; position: relative; border: 1px solid var(--border-color); }
+        .theme-toggle input { display: none; }
+        .theme-toggle .icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1; transition: color 0.3s ease; color: var(--text-light); }
+        .theme-toggle .icon svg { width: 20px; height: 20px; }
+        .theme-toggle input:checked + .icon { color: var(--text-main); }
+        .toggle-slider { position: absolute; width: 32px; height: 32px; background-color: var(--bg-section); border-radius: 50%; top: 4px; left: 4px; box-shadow: 0 2px 4px var(--shadow-color-light); transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); border: 1px solid var(--border-color); }
+        #theme-dark:checked ~ .toggle-slider { transform: translateX(36px); }
+
+        /* Hero Section */
+        .hero { padding: 80px 0; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+        .hero-text { max-width: 550px; }
+        .hero-text h1 { font-size: 4.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+        .hero-text .highlight { color: var(--primary-color); }
+        .hero-text p { font-size: 1.1rem; color: var(--text-light); margin-top: 30px; max-width: 450px; transition: color 0.3s ease; }
+        .hero-text .get-started { margin-top: 30px; display: inline-block; }
+        .hero-image-container { position: relative; width: 400px; height: 400px; display: flex; align-items: center; justify-content: center; }
+        .rotating-text { position: absolute; width: 100%; height: 100%; animation: rotate 20s linear infinite; }
+        .rotating-text svg { width: 100%; height: 100%; fill: var(--text-main); font-size: 1.2rem; font-weight: 600; transition: fill 0.3s ease; }
+        .main-image { width: 75%; height: 75%; border-radius: 50%; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* Languages Section */
+        .languages-section, .why-us-section { padding: 80px 0; }
+        .section-title { text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 50px; }
+        .languages-grid, .why-us-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .language-card, .why-us-card { background: var(--bg-section); border-radius: 20px; border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 5px 15px var(--shadow-color-light); opacity: 0; transform: translateY(50px); transition: opacity 0.6s ease-out, transform 0.6s ease-out, border-color 0.3s ease, box-shadow 0.3s ease; }
+        .language-card:nth-child(1) { transition-delay: 0.1s; } .language-card:nth-child(2) { transition-delay: 0.2s; } .language-card:nth-child(3) { transition-delay: 0.3s; } .language-card:nth-child(4) { transition-delay: 0.4s; } .language-card:nth-child(5) { transition-delay: 0.5s; } .language-card:nth-child(6) { transition-delay: 0.6s; }
+        .language-card.is-visible, .why-us-card.is-visible { opacity: 1; transform: translateY(0); }
+        .language-card:hover, .why-us-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px var(--shadow-color-heavy); }
+        .card-image { width: 100%; height: 200px; object-fit: cover; }
+        .card-content { padding: 20px; }
+        .card-content h3, .why-us-card h3 { font-size: 1.3rem; margin-bottom: 10px; }
+        .card-content p, .why-us-card p { color: var(--text-light); font-size: 1rem; transition: color 0.3s ease; }
+        
+        /* "Why Choose Us" Section */
+        .why-us-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        .why-us-card { padding: 30px; text-align: center; }
+        .why-us-card .icon { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px; }
+
+        /* Footer */
+        .footer { padding: 40px; } /* Padding adjustment for inside wrapper */
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; text-align: left; }
+        .footer-column h3 { font-size: 1.2rem; margin-bottom: 20px; color: var(--primary-color); }
+        .footer-column ul { list-style: none; }
+        .footer-column ul li { margin-bottom: 10px; }
+        .footer-column ul a { color: var(--text-light); text-decoration: none; transition: color 0.3s ease; }
+        .footer-column ul a:hover { color: var(--primary-color); }
+        .newsletter-form input { width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--border-color); margin-bottom: 10px; background: var(--bg-main); color: var(--text-main); }
+        .newsletter-form input::placeholder { color: var(--text-light); }
+        .social-icons a { color: var(--text-light); font-size: 1.5rem; margin-right: 15px; text-decoration: none; transition: color 0.3s ease; }
+        .social-icons a:hover { color: var(--primary-color); }
+        .footer-bottom { text-align: center; border-top: 1px solid var(--border-color); padding-top: 20px; }
+        
+        /* Animated Cat Styles */
+        .animated-cat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 150px;
+            height: 150px;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .animated-cat {
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><g class="cat-body"><path d="M50,95 C25,95 25,60 50,60 C75,60 75,95 50,95 Z" fill="%23A0AEC0"/></g><g class="cat-head"><path d="M50,65 C30,65 30,35 50,35 C70,35 70,65 50,65 Z" fill="%234A5568"/><path d="M35,40 L40,30 L45,40 Z" fill="%234A5568"/><path d="M55,40 L60,30 L65,40 Z" fill="%234A5568"/><path d="M40 50 Q 50 58 60 50" stroke="%23F9FAFB" stroke-width="2" fill="none"/></g><g class="cat-paw" style="transform-origin: 25px 80px; animation: wave 2s ease-in-out infinite;"><path d="M20,90 C15,90 15,75 20,75 C25,75 25,90 20,90 Z" fill="%234A5568"/></g></svg>');
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+        .speech-bubble {
+            position: absolute;
+            top: -20px;
+            left: -30px;
+            background: var(--bg-section);
+            color: var(--text-main);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            box-shadow: 0 4px 10px var(--shadow-color-heavy);
+            border: 1px solid var(--border-color);
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out 1s forwards;
+            pointer-events: auto;
+        }
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            20% { transform: rotate(20deg); }
+            40% { transform: rotate(-10deg); }
+            60% { transform: rotate(20deg); }
+            80% { transform: rotate(-10deg); }
+            100% { transform: rotate(0deg); }
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) { .hero { flex-direction: column; text-align: center; } .hero-text { max-width: 100%; } .hero-image-container { margin-top: 40px; } }
+        @media (max-width: 768px) { .nav-links { display: none; } .hero-text h1 { font-size: 3.5rem; } .hero-image-container { width: 300px; height: 300px; } }
+    </style>
+</head>
+<body>
+
+    <div class="header-wrapper">
+        <header class="main-header">
+            <nav class="container main-nav">
+                <a href="#" class="logo">LinguaQuest</a>
+                <ul class="nav-links">
+                    <li><a href="#home" class="scroll-link">Home</a></li>
+                    <li><a href="#languages" class="scroll-link">Languages</a></li>
+                    <li><a href="#why-us" class="scroll-link">Why Us</a></li>
+                    <li><a href="resource_selection.html">Resources</a></li>
+                    <li><a href="#contact" class="scroll-link">Contact</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="profile.html" class="btn">Get Started <span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.75 6.75L19.25 12L13.75 17.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 12H4.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+                    <div class="theme-toggle">
+                        <input type="radio" name="theme" id="theme-light" checked><label for="theme-light" class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" /></svg></label>
+                        <input type="radio" name="theme" id="theme-dark"><label for="theme-dark" class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg></label>
+                        <div class="toggle-slider"></div>
                     </div>
-                </label>
-            </div>
-            <button class="menu-toggle" aria-label="Toggle navigation">
-              ☰
-            </button>
-            <ul class="nav-links">
-                <li><a href="#home" class="scroll-link">Home</a></li>
-                <li><a href="#footer" class="scroll-link">About</a></li>
-                <li><a href="#contact-support" class="scroll-link">Contact</a></li>
-                <li><a href="#contact-support" class="scroll-link">Support</a></li>
-                <li><a href="resource_selection.html">Resources</a></li>
-            </ul>
-        </div>
-    </nav>
-      
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h2 class="hero-title" id="hero-title">Welcome to LinguaQuest</h2>
-            <p class="hero-description" id="hero-description">Master new languages with interactive lessons and quizzes.</p>
-            <a href="profile.html" class="get-started">Get Started</a>
-        </div>
-    </section>
+                </div>
+            </nav>
+        </header>
+    </div>
 
-    <section id="resources" class="language-info">
-        <h3 class="language-heading">Popular Languages We Offer</h3>
-        <div class="language-grid">
-            <div class="language-card">
-                <img src="https://flagcdn.com/w320/gb.png" alt="English" />
-                <h4>English</h4>
-                <p>Spoken worldwide, English is the global bridge of communication.</p>
+    <main>
+        <section id="home" class="hero container">
+            <div class="hero-text">
+                <h1>Master a New <span class="highlight">Language</span></h1>
+                <p>Welcome to LinguaQuest. Master new languages with interactive lessons and quizzes. Your journey to fluency begins here.</p>
+                <a href="profile.html" class="btn get-started">Start for Free<span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.75 6.75L19.25 12L13.75 17.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 12H4.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
             </div>
-            <div class="language-card">
-                <img src="https://flagcdn.com/w320/in.png" alt="Hindi" />
-                <h4>Hindi</h4>
-                <p>One of the most spoken languages in the world, mainly in India.</p>
+            <div class="hero-image-container">
+                <div class="rotating-text"><svg viewBox="0 0 100 100"><path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/><text><textPath xlink:href="#circlePath">START YOUR JOURNEY TO FLUENCY AND DISCOVER NEW CULTURES</textPath></text></svg></div>
+                <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto-format=fit=crop" alt="Diverse group of people talking" class="main-image">
             </div>
-            <div class="language-card">
-                <img src="https://flagcdn.com/w320/es.png" alt="Spanish" />
-                <h4>Spanish</h4>
-                <p>Used in 20+ countries, Spanish is known for its cultural richness.</p>
-            </div>
-            <div class="language-card">
-                <img src="https://flagcdn.com/w320/fr.png" alt="French" />
-                <h4>French</h4>
-                <p>Language of diplomacy, spoken across Europe and Africa.</p>
-            </div>
-            <div class="language-card">
-                <img src="https://flagcdn.com/w320/jp.png" alt="Japanese" />
-                <h4>Japanese</h4>
-                <p>Learn Japanese to explore anime, culture, and technology.</p>
-            </div>
-             <div class="language-card">
-                <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="German">
-                <h2>German</h2>
-                <p class="card-desc">Learn German — the language of innovation, culture, and opportunity in Europe.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="vision-mission-section">
-        <h2>About LinguaQuest</h2>
-        <div class="vm-container">
-            <div class="vm-card">
-                <h3>Vision</h3>
-                <p>To make language learning accessible, engaging, and enjoyable for everyone, breaking down cultural barriers and connecting people worldwide.</p>
-            </div>
-            <div class="vm-card">
-                <h3>Mission</h3>
-                <p>To create innovative, interactive, and gamified learning experiences that inspire learners to master new languages with confidence and fun.</p>
-            </div>
-        </div>
-    </section>
+        <section id="languages" class="languages-section"><div class="container"><h2 class="section-title">Popular Languages We Offer</h2><div class="languages-grid"><div class="language-card"><img src="https://flagcdn.com/w320/gb.png" alt="Flag of the United Kingdom" class="card-image"><div class="card-content"><h3>English</h3><p>Spoken worldwide, English is the global bridge of communication.</p></div></div><div class="language-card"><img src="https://flagcdn.com/w320/in.png" alt="Flag of India" class="card-image"><div class="card-content"><h3>Hindi</h3><p>One of the most spoken languages in the world, mainly in India.</p></div></div><div class="language-card"><img src="https://flagcdn.com/w320/es.png" alt="Flag of Spain" class="card-image"><div class="card-content"><h3>Spanish</h3><p>Used in 20+ countries, Spanish is known for its cultural richness.</p></div></div><div class="language-card"><img src="https://flagcdn.com/w320/fr.png" alt="Flag of France" class="card-image"><div class="card-content"><h3>French</h3><p>Language of diplomacy, spoken across Europe and Africa.</p></div></div><div class="language-card"><img src="https://flagcdn.com/w320/jp.png" alt="Flag of Japan" class="card-image"><div class="card-content"><h3>Japanese</h3><p>Learn Japanese to explore anime, culture, and technology.</p></div></div><div class="language-card"><img src="https://flagcdn.com/w320/de.png" alt="Flag of Germany" class="card-image"><div class="card-content"><h3>German</h3><p>The language of innovation, culture, and opportunity in Europe.</p></div></div></div></div></section>
+        
+        <section id="why-us" class="why-us-section"><div class="container"><h2 class="section-title">Why Learn with LinguaQuest?</h2><div class="why-us-grid"><div class="why-us-card"><div class="icon">🎓</div><h3>Expert-Designed Courses</h3><p>Our curriculum is crafted by language experts to ensure you learn effectively and correctly.</p></div><div class="why-us-card"><div class="icon">🎮</div><h3>Fun, Gamified Lessons</h3><p>Stay motivated with interactive quizzes, points, and rewards that make learning feel like a game.</p></div><div class="why-us-card"><div class="icon">🌍</div><h3>Learn from Anywhere</h3><p>Access your lessons anytime, anywhere, on any device. Your journey to fluency fits your schedule.</p></div></div></section>
+    </main>
     
-
-    <section id="contact-support" class="contact-info">
-        <div class="contact-container">
-            <div class="contact-card">
-                <h3>Contact Us</h3>
-                <p><strong>Email:</strong> support@linguaquest.com</p>
-                <p><strong>Phone:</strong> +91 98765 43210</p>
+    <div class="footer-wrapper">
+        <footer id="contact" class="footer">
+            <div class="container">
+                <div class="footer-content"><div class="footer-column"><h3>Company</h3><ul><li><a href="#">About Us</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li><li><a href="#">Blog</a></li></ul></div><div class="footer-column"><h3>Support</h3><ul><li><a href="#">Help Center</a></li><li><a href="resource_selection.html">Resources</a></li><li><a href="#">Contact Us</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li></ul></div><div class="footer-column"><h3>Connect</h3><div class="social-icons"><a href="#" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.441 1.441 1.441 1.441-.645 1.441-1.441-.645-1.44-1.441-1.44z"/></svg></a></div></div><div class="footer-column"><h3>Subscribe to our Newsletter</h3><form class="newsletter-form" onsubmit="event.preventDefault();"><input type="email" placeholder="Enter your email" required><button class="btn" style="width: 100%; margin-top: 10px; color: var(--white); background-color: var(--primary-color); border-color: var(--primary-color);">Subscribe</button></form></div></div><div class="footer-bottom"><p>&copy; 2024 LinguaQuest by TEAM NEXORA ❤️. All rights reserved.</p></div>
             </div>
-            <div class="contact-card">
-                <h3>Our Address</h3>
-                <p>Team Nexora, 123 Tech Park</p>
-                <p>Pune, Maharashtra, 411001, India</p>
-            </div>
-            <div class="contact-card">
-                <h3>Need Help?</h3>
-                <p>Visit our FAQ page or get in touch with our support team 24/7.</p>
-            </div>
-        </div>
-    </section>
+        </footer>
+    </div>
 
-    <footer class="footer" id="footer">
-        <p>Made by TEAM NEXORA ❤️. All rights reserved.</p>
-    </footer>
+    <div class="animated-cat-container">
+        <div class="speech-bubble" id="cat-speech-bubble">Hi!</div>
+        <div class="animated-cat"></div>
+    </div>
 
-    <script src="script.js"></script>
-  </body>
-</html>\
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- Smooth Scrolling ---
+            const scrollLinks = document.querySelectorAll('.scroll-link');
+
+            scrollLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // --- Theme Toggle ---
+            const lightThemeRadio = document.getElementById('theme-light');
+            const darkThemeRadio = document.getElementById('theme-dark');
+            const htmlElement = document.documentElement;
+            lightThemeRadio.addEventListener('change', () => { htmlElement.setAttribute('data-theme', 'light'); });
+            darkThemeRadio.addEventListener('change', () => { htmlElement.setAttribute('data-theme', 'dark'); });
+
+            // --- Rise Up Animation on Scroll ---
+            const cards = document.querySelectorAll('.language-card, .why-us-card');
+            const observer = new IntersectionObserver(entries => { 
+                entries.forEach(entry => { 
+                    if (entry.isIntersecting) { 
+                        entry.target.classList.add('is-visible'); 
+                    } 
+                }); 
+            }, { threshold: 0.1 });
+            cards.forEach(card => { observer.observe(card); });
+
+            // --- Cycling Cat Greetings ---
+            const greetings = ["Hi!", "Hello!", "Namaste!", "Hola!", "Bonjour!"];
+            let currentGreetingIndex = 0;
+            const speechBubble = document.getElementById('cat-speech-bubble');
+
+            setInterval(() => {
+                currentGreetingIndex = (currentGreetingIndex + 1) % greetings.length;
+                speechBubble.textContent = greetings[currentGreetingIndex];
+            }, 3000); // Change greeting every 3 seconds
+        });
+    </script>
+</body>
+</html>
